@@ -1,32 +1,34 @@
+
+
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 300px auto ;
+   background-color: #2196F3;
+   height: 100vh;
+
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.leftCol {
+  background-image: url("./img/gradient_purple.jpg");
+  color: #fff;
+  height: auto;
+  background-size: cover;
+  text-align: left;
+  padding-left: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.roomNames {
+  padding-top: 20px;
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.colTitle{
+  font-size: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main {
+  background-color: #fff;
+  font-size: 30px;
+  padding-left: 30px;
 }
