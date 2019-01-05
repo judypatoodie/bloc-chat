@@ -2,7 +2,7 @@
 
 .App {
   display: grid;
-  grid-template-columns: 300px auto ;
+  grid-template-columns: 330px auto ;
    background-color: #2196F3;
    height: 100vh;
 
@@ -11,7 +11,6 @@
 
 .leftCol {
   background-image: url("./img/gradient_purple.jpg");
-  color: #fff;
   height: auto;
   background-size: cover;
   text-align: left;
@@ -21,12 +20,19 @@
 .roomNames {
   padding-top: 20px;
   font-size: 20px;
+    color: #fff;
 }
 
 .colTitle{
   font-size: 40px;
+    color: #fff;
+    display: inline-block;
+
 }
 
+.btn{
+  margin: 25px 12px 10px 10px;
+}
 .main {
   background-color: #fff;
   font-size: 30px;

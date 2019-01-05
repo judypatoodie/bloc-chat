@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomsList from './components/RoomsList';
+import { Popover, Button, OverlayTrigger, Form, ControlLabel, FormGroup, FormControl   } from 'react-bootstrap';
+
 
 // Initialize Firebase
 var config = {
@@ -16,13 +18,19 @@ firebase.initializeApp(config);
 
 
 
+
+
+
 class App extends Component {
+
+
+
   render() {
     return (
       <div className="App">
 
           <div className="leftCol">
-              <h1 className="colTitle">Bloc Chat</h1>
+
               <div className="roomNames">
                 <RoomsList firebase={firebase}/>
               </div>
