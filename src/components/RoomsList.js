@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Popover, Button, OverlayTrigger, Form, ControlLabel, FormGroup, FormControl   } from 'react-bootstrap';
-
+import { Popover, Button, OverlayTrigger, Form, ControlLabel, FormGroup, FormControl, Modal  } from 'react-bootstrap';
+import './RoomsList.css';
 
 class RoomList extends Component {
   constructor(props) {
@@ -9,20 +9,19 @@ class RoomList extends Component {
     this.state= {
       rooms: [],
       roomName: '',
-
+      show: false,
       overlay: (
-        <Popover id="popover-positioned-bottom" title="Create new room">
-            <Form inline onSubmit={this.handleClick}>
+
+            <Form inline onSubmit={(e)=>this.createRoom(e)}>
               <FormGroup controlId="formInlineName">
                 <ControlLabel>Room Name</ControlLabel>{' '}
-                <FormControl type="text" placeholder="Lunch Room" />
+                <FormControl onChange={(e) => this.handleChange(e)} type="text" placeholder="Lunch Room" />
               </FormGroup>{' '}
               <FormGroup controlId="formInlineEmail">
               </FormGroup>{' '}
-              <Button type="submit" >Create Room</Button>
-              <Button type="button" onClick={() => this.handleCancel()}>Cancel</Button>
+              <Button bsStyle="primary" className="submitButton" type="submit" >Create Room</Button>
             </Form>
-        </Popover>
+
       )
 
   };
@@ -30,19 +29,26 @@ class RoomList extends Component {
 
 }
 
+handleClose() {
+   this.setState({ show: false });
+ }
 
+ handleShow() {
+   this.setState({ show: true });
+ }
 
-handleClick(e){
-
-  this.roomsRef.push({name: this.state.roomName});
-     this.setState({roomName: ''});
-     e.preventDefault();
-
+handleChange(e){
+  e.preventDefault();
+  let newChatRoom = e.target.value;
+     this.setState({roomName: newChatRoom});
 }
 
-handleCancel(e){
-
-  alert('u sure?');
+createRoom(e){
+  let newRoomName = this.state.roomName;
+  this.roomsRef.push({
+    name: newRoomName
+  })
+  this.setState({roomName: ''});
 }
 
  componentDidMount() {
@@ -57,15 +63,22 @@ handleCancel(e){
     return (
       <section className="chatColumn">
       <h1 className="colTitle">Bloc Chat</h1>
-      <OverlayTrigger
-      trigger="click"
-      placement="bottom"
-      overlay= {this.state.overlay}>
+      <Button bsStyle="success" style={{float:'right'}} onClick={() => this.handleShow()}>New Room </Button>
 
-         <Button bsStyle="success" style={{float:'right'}}>New Room</Button>
-       </OverlayTrigger>
+      <Modal show={this.state.show} onHide={() => this.handleClose() }>
+        <Modal.Header closeButton>
+          <Modal.Title>Create New Room</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {this.state.overlay}
+        </Modal.Body>
+        <Modal.Footer>
+              <Button className="cancelButton" bsStyle="danger" onClick={() => this.handleClose() }>Cancel</Button>
+        </Modal.Footer>
+
+       </Modal>
+
           <div className="roomsList">
-
             {this.state.rooms.map((room,index)  =>
             <p key={index}>{room.name}</p>)}
           </div>
