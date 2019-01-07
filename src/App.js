@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomsList from './components/RoomsList';
-import { Popover, Button, OverlayTrigger, Form, ControlLabel, FormGroup, FormControl   } from 'react-bootstrap';
+import MessageList from './components/MessageList';
 
 
 // Initialize Firebase
@@ -17,26 +17,54 @@ var config = {
 firebase.initializeApp(config);
 
 
-
-
-
-
 class App extends Component {
+  constructor(props) {
+  super(props);
+    {
 
+      this.state= {
+        content: 'Select Room',
+      }
+
+    }
+  }
+
+
+  setRoomTitle = changedRoomName => {
+    this.setState({
+      content: changedRoomName
+    });
+  };
+
+
+  getRoomID() {
+    return(
+      this.roomsRef.on("child_added", function(snapshot, prevChildKey) {
+        var newPost = snapshot.val();
+        console.log(newPost);
+      })
+    );
+
+   }
 
 
   render() {
+
     return (
       <div className="App">
 
           <div className="leftCol">
 
               <div className="roomNames">
-                <RoomsList firebase={firebase}/>
+                <RoomsList firebase={firebase} replace={this.setRoomTitle} />
+
               </div>
+
           </div>
           <div className="main">
-          Main
+          {this.state.content}
+
+          <MessageList firebase={firebase} />
           </div>
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Popover, Button, OverlayTrigger, Form, ControlLabel, FormGroup, FormControl, Modal  } from 'react-bootstrap';
+import { Button, Form, ControlLabel, FormGroup, FormControl, Modal  } from 'react-bootstrap';
 import './RoomsList.css';
 
 class RoomList extends Component {
@@ -8,6 +8,7 @@ class RoomList extends Component {
 
     this.state= {
       rooms: [],
+      changedRoomName: this.props.content,
       roomName: '',
       show: false,
       overlay: (
@@ -59,7 +60,18 @@ createRoom(e){
     console.log(room.key)
   });
 }
+
+getActiveRoom = (e) => {
+  let clickedRoomName = e.target.dataset.value;
+  this.props.replace(clickedRoomName);
+};
+
+
+
   render() {
+
+
+
     return (
       <section className="chatColumn">
       <h1 className="colTitle">Bloc Chat</h1>
@@ -73,14 +85,14 @@ createRoom(e){
           {this.state.overlay}
         </Modal.Body>
         <Modal.Footer>
-              <Button className="cancelButton" bsStyle="danger" onClick={() => this.handleClose() }>Cancel</Button>
+              <Button className="cancelButton" bsStyle="danger" onClick={this.getActiveRoom}>Cancel</Button>
         </Modal.Footer>
 
        </Modal>
 
           <div className="roomsList">
             {this.state.rooms.map((room,index)  =>
-            <p key={index}>{room.name}</p>)}
+            <p key={index} data-value={room.name} onClick={this.getActiveRoom}>{room.name}</p>)}
           </div>
         </section>
 
