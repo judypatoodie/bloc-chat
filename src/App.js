@@ -56,7 +56,7 @@ class App extends Component {
 
           </div>
           <div className="main">
-          {this.state.activeRoom} 
+          {this.state.activeRoom}
 
           <MessageList firebase={firebase}  activeRoomId={this.state.activeRoomId}/>
           </div>

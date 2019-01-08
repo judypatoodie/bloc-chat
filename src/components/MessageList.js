@@ -55,7 +55,7 @@ render(){
        .filter (message => message.roomId === this.props.activeRoomId)
        .map(messages => (
            <div className="message-group" key={messages.key} style={{fontSize: '2rem'}}>
-             <div><b>{messages.username}</b> ({messages.sentAt}): {messages.content}</div>
+             <div><b>{messages.username}</b> <small style={{fontSize: '1.5rem' , color: '#A9A9A9'}}>({messages.sentAt})</small>: {messages.content}</div>
 
            </div>
          ))}
