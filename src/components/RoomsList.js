@@ -85,7 +85,7 @@ getActiveRoom = (e) => {
           {this.state.overlay}
         </Modal.Body>
         <Modal.Footer>
-              <Button className="cancelButton" bsStyle="danger" onClick={this.getActiveRoom}>Cancel</Button>
+              <Button className="cancelButton" bsStyle="danger" onClick={() => this.handleClose()}>Cancel</Button>
         </Modal.Footer>
 
        </Modal>
