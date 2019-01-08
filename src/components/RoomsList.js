@@ -63,7 +63,8 @@ createRoom(e){
 
 getActiveRoom = (e) => {
   let clickedRoomName = e.target.dataset.value;
-  this.props.replace(clickedRoomName);
+  let roomKey = e.target.dataset.key;
+  this.props.replace(clickedRoomName, roomKey);
 };
 
 
@@ -92,7 +93,7 @@ getActiveRoom = (e) => {
 
           <div className="roomsList">
             {this.state.rooms.map((room,index)  =>
-            <p key={index} data-value={room.name} onClick={this.getActiveRoom}>{room.name}</p>)}
+            <p key={index} data-value={room.name} data-key={room.key} onClick={this.getActiveRoom}>{room.name}</p>)}
           </div>
         </section>
 

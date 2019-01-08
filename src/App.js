@@ -20,36 +20,30 @@ firebase.initializeApp(config);
 class App extends Component {
   constructor(props) {
   super(props);
-    {
 
       this.state= {
-        content: 'Select Room',
+        activeRoom: 'Select Room',
+        activeRoomId: ''
       }
 
-    }
+
+
   }
 
 
-  setRoomTitle = changedRoomName => {
+  setRoomTitle = (changedRoomName, roomKey) => {
     this.setState({
-      content: changedRoomName
+      activeRoom: changedRoomName,
+      activeRoomId: roomKey
     });
   };
 
 
-  getRoomID() {
-    return(
-      this.roomsRef.on("child_added", function(snapshot, prevChildKey) {
-        var newPost = snapshot.val();
-        console.log(newPost);
-      })
-    );
 
-   }
 
 
   render() {
-
+    console.log(this.state.activeRoomId);
     return (
       <div className="App">
 
@@ -62,9 +56,9 @@ class App extends Component {
 
           </div>
           <div className="main">
-          {this.state.content}
+          {this.state.activeRoom} 
 
-          <MessageList firebase={firebase} />
+          <MessageList firebase={firebase}  activeRoomId={this.state.activeRoomId}/>
           </div>
 
 
