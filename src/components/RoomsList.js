@@ -8,6 +8,7 @@ class RoomList extends Component {
 
     this.state= {
       rooms: [],
+      active: null,
       changedRoomName: this.props.content,
       roomName: '',
       show: false,
@@ -61,11 +62,17 @@ createRoom(e){
   });
 }
 
+
 getActiveRoom = (e) => {
   let clickedRoomName = e.target.dataset.value;
   let roomKey = e.target.dataset.key;
   this.props.replace(clickedRoomName, roomKey);
+
 };
+
+activeRoomColorChange(room) {
+  this.setState({ active: room });
+}
 
 
 
@@ -92,8 +99,10 @@ getActiveRoom = (e) => {
        </Modal>
 
           <div className="roomsList">
-            {this.state.rooms.map((room,index)  =>
-            <p key={index} data-value={room.name} data-key={room.key} onClick={this.getActiveRoom}>{room.name}</p>)}
+            {this.state.rooms
+              .map((room,index)  =>
+            <p key={index} data-value={room.name} data-key={room.key} onClick={ (e) => {this.activeRoomColorChange(room); this.getActiveRoom(e)}} style={{color: this.state.active === room ? '#000000' : '#ffffff'}}>{room.name}</p>)
+            }
           </div>
         </section>
 
