@@ -20,7 +20,6 @@ this.state ={
 componentDidMount() {
   this.props.firebase.auth().onAuthStateChanged( user => {
   this.props.setUser(user);
-  console.log(this.props.user)
 });
 }
 
@@ -47,12 +46,12 @@ render(){
 
   return(
     <div>
-        <div style={{fontSize:'1.5rem', position:'absolute', top: '1rem', right: '4rem', top: '0'}}>
+        <div style={{fontSize:'1.5rem', position:'absolute', top: '1rem', right: '4rem', marginTop: '1rem'}}>
           <ion-icon name="person"></ion-icon>
           {this.props.user ? this.props.user.displayName : 'Guest'}
         </div>
-        <ButtonGroup vertical style={{position:'absolute', top: '1rem', right: '4rem', top: '0'}}>
-          <DropdownButton title=<ion-icon style= {{color: '#7D26CD'}} name="menu"></ion-icon> id="bg-justified-dropdown dropdown-no-caret" pullRight noCaret>
+        <ButtonGroup vertical style={{position:'absolute', top: '1rem', right: '4rem', marginTop: '1rem' }}>
+          <DropdownButton title=<ion-icon style= {{color: '#009a9a'}} name="menu"></ion-icon> id="bg-justified-dropdown dropdown-no-caret" pullRight noCaret>
             <MenuItem eventKey="1" onClick={()=> this.signIn()}>{this.props.user ? 'Sign in as another user' : 'Sign In'}</MenuItem>
             {this.props.user ? this.state.showSignedIn : this.state.showSignedOut }
           </DropdownButton>

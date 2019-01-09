@@ -3,14 +3,13 @@
 .App {
   display: grid;
   grid-template-columns: 330px auto ;
-   background-color: #2196F3;
    height: 100vh;
 
 
 }
 
 .leftCol {
-  background-image: url("./img/gradient_purple.jpg");
+  background-image: url("./img/teal-sky.jpg");
   height: auto;
   background-size: cover;
   text-align: left;

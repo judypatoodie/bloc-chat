@@ -23,15 +23,20 @@ class App extends Component {
   super(props);
 
       this.state= {
-        activeRoom: 'Select Room',
-        activeRoomId: '',
-        user: null
+        activeRoom: null,
+        activeRoomId: '-LVVq0wuq85QhAHIhejy',
+        user: 'Guest'
       };
-
 
 
   }
 
+
+setDefaultRoom = (defaultRoom) => {
+
+  this.state.activeRoom ? this.setState({activeRoom: this.state.activeRoom}) : this.setState({activeRoom: defaultRoom})
+
+}
 
   setRoomTitle = (changedRoomName, roomKey) => {
     this.setState({
@@ -47,23 +52,35 @@ setUser(user){
 
 
   render() {
-    console.log(this.state.activeRoomId);
+
     return (
       <div className="App">
 
           <div className="leftCol">
 
               <div className="roomNames">
-                <RoomsList firebase={firebase} replace={this.setRoomTitle} />
+                <RoomsList firebase={firebase}
+                replace={this.setRoomTitle}
+                setDefaultRoom={this.setDefaultRoom}
+                activeRoom={this.state.activeRoom} />
 
               </div>
 
           </div>
-          <div className="main">
-          {this.state.activeRoom}
+          <div className="main" style={{marginTop:'2.5rem'}} >
+           <div style={{ borderBottom: '1px solid #D3D3D3', paddingBottom: '2rem'}}>
+            <ion-icon name="paper-plane"></ion-icon> {this.state.activeRoom}
+           </div>
 
-          <MessageList firebase={firebase}  activeRoomId={this.state.activeRoomId}/>
-          <User firebase={firebase} user={this.state.user} setUser={(user) => this.setUser(user)}/>
+          <MessageList
+          firebase={firebase}
+          activeRoomId={this.state.activeRoomId}
+          user={this.state.user}/>
+
+          <User
+          firebase={firebase}
+          user={this.state.user}
+          setUser={(user) => this.setUser(user)}/>
           </div>
 
 
