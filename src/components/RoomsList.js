@@ -58,7 +58,9 @@ createRoom(e){
     const room = snapshot.val();
     room.key = snapshot.key;
     this.setState({ rooms: this.state.rooms.concat( room ) })
-    console.log(room.key)
+    let defaultRoom = 'General';
+    this.props.setDefaultRoom(defaultRoom);
+
   });
 }
 
@@ -73,7 +75,6 @@ getActiveRoom = (e) => {
 activeRoomColorChange(room) {
   this.setState({ active: room });
 }
-
 
 
   render() {
@@ -93,15 +94,26 @@ activeRoomColorChange(room) {
           {this.state.overlay}
         </Modal.Body>
         <Modal.Footer>
-              <Button className="cancelButton" bsStyle="danger" onClick={() => this.handleClose()}>Cancel</Button>
+              <Button
+              className="cancelButton"
+              bsStyle="danger"
+              onClick={() => this.handleClose()}>Cancel</Button>
         </Modal.Footer>
 
        </Modal>
 
-          <div className="roomsList">
-            {this.state.rooms
+          <div className="roomsList" style={{marginTop: '2.5rem'}} >
+            {
+              this.state.rooms
               .map((room,index)  =>
-            <p key={index} data-value={room.name} data-key={room.key} onClick={ (e) => {this.activeRoomColorChange(room); this.getActiveRoom(e)}} style={{color: this.state.active === room ? '#000000' : '#ffffff'}}>{room.name}</p>)
+            <p
+            key={index}
+            data-value={room.name}
+            data-key={room.key}
+            onClick={ (e) => {this.activeRoomColorChange(room); this.getActiveRoom(e)}}
+            style={{color: this.state.active === room || room.name === this.props.activeRoom? '#000000' : '#ffffff'}}>
+            {room.name}
+            </p>)
             }
           </div>
         </section>
