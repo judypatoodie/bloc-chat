@@ -48,7 +48,7 @@ render(){
     <div>
         <div style={{fontSize:'1.5rem', position:'absolute', top: '1rem', right: '4rem', marginTop: '1rem'}}>
           <ion-icon name="person"></ion-icon>
-          {this.props.user ? this.props.user.displayName : 'Guest'}
+          {this.props.user ? " " + this.props.user.displayName : ' Guest'}
         </div>
         <ButtonGroup vertical style={{position:'absolute', top: '1rem', right: '4rem', marginTop: '1rem' }}>
           <DropdownButton title=<ion-icon style= {{color: '#009a9a'}} name="menu"></ion-icon> id="bg-justified-dropdown dropdown-no-caret" pullRight noCaret>
