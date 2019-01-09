@@ -70,6 +70,7 @@ render(){
 
  <div>
 
+
   <Form
   inline
   onSubmit={(e) => this.createNewMessage(e)}>
@@ -85,6 +86,7 @@ render(){
      style={{width: '100%'}} />
    </FormGroup>
 
+
    <div>
      <Button
      type="submit"
@@ -93,6 +95,7 @@ render(){
      </Button>
    </div>
    </Form>
+
 
    <div className="messages" style={{marginTop:'3rem'}}>
      {this.state.messages
