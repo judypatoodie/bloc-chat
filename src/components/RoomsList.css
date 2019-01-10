@@ -5,3 +5,7 @@
 .cancelButton{
   margin: 0px;
 }
+
+.renameRoomButton{
+  float: right;
+}
