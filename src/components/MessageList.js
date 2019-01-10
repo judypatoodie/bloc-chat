@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, Form } from 'react-bootstrap';
+import './MessageList.css'
 
 class MessageList extends Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class MessageList extends Component {
     }
 
   this.messagesRef = this.props.firebase.database().ref('messages');
-  this.timeStamp = this.props.firebase.database().ref("sessions");
 
 };
 
@@ -63,6 +63,14 @@ createNewMessage(e){
 
 }
 
+
+deleteMessage(e, messageId){
+
+  this.msgDeleteRef= this.props.firebase.database().ref('messages');
+  this.msgDeleteRef.child(messageId).remove();
+  console.log(messageId);
+}
+
 render(){
 
   return(
@@ -101,11 +109,16 @@ render(){
      {this.state.messages
        .filter (message => message.roomId === this.props.activeRoomId)
        .map(messages => (
+
            <div className="message-group" key={messages.key} style={{fontSize: '2rem'}}>
              <div>
                <b>{messages.username}   </b>
                <small style={{fontSize: '1.5rem' , color: '#A9A9A9'}}>
-                {this.formatTime(messages.sentAt)}</small>
+                {this.formatTime(messages.sentAt)}
+
+                </small>
+                <span className="deleteButton" onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>  <ion-icon  name="trash"></ion-icon>
+                </span>
                 <p>{messages.content}</p>
              </div>
 
