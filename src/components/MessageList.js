@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, Form } from 'react-bootstrap';
 import './MessageList.css'
+import { Modal } from 'react-bootstrap';
+
 
 class MessageList extends Component {
   constructor(props) {
@@ -9,6 +11,22 @@ class MessageList extends Component {
     this.state= {
       roomID: '',
       content: '',
+      deletedMsgId:'',
+      deleteConfirmation:(
+        <div className="static-modal">
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Title>Are you sure?</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>This message deletion cannot be undone.</Modal.Body>
+
+            <Modal.Footer>
+              <Button>Cancel</Button>
+              <Button bsStyle="primary">Delete Msg</Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+          </div> ),
       messages: [
         {
           username: '',
@@ -32,6 +50,11 @@ componentDidMount() {
    this.setState({ roomID: this.props.activeRoomId});
 
  });
+
+ this.messagesRef.on('child_removed', snapshot  => {
+  this.setState({ messages: this.state.messages.filter( message => message.key !== snapshot.key) });
+
+});
 }
 
   formatTime(time) {
@@ -68,6 +91,7 @@ deleteMessage(e, messageId){
 
   this.msgDeleteRef= this.props.firebase.database().ref('messages');
   this.msgDeleteRef.child(messageId).remove();
+  this.setState({deletedMsgId: messageId})
   console.log(messageId);
 }
 
@@ -117,8 +141,8 @@ render(){
                 {this.formatTime(messages.sentAt)}
 
                 </small>
-                <span className="deleteButton" onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>  <ion-icon  name="trash"></ion-icon>
-                </span>
+                <button className="deleteButton" onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>  <ion-icon  name="trash"></ion-icon>
+                </button>
                 <p>{messages.content}</p>
              </div>
 
