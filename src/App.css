@@ -2,7 +2,7 @@
 
 .App {
   display: grid;
-  grid-template-columns: 330px auto ;
+  grid-template-columns: 30vw auto ;
    height: 100vh;
 
 
