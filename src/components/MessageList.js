@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, Form } from 'react-bootstrap';
 import './MessageList.css'
 import { Modal } from 'react-bootstrap';
+import Moment from 'react-moment';
 
 
 class MessageList extends Component {
@@ -57,15 +58,20 @@ componentDidMount() {
 });
 }
 
-  formatTime(time) {
-    const date = new Date(time);
-    const hours = date.getHours()< 12 ? date.getHours() : date.getHours() - 12 ;
-    const amOrPm = date.getHours() < 12 ? " AM" : " PM";
-    const minutes =  date.getMinutes();
-    const formattedTime = hours + ':' + minutes + amOrPm;
+formatTime(time) {
+  var today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yy = today.getFullYear().toString().substr(-2);
+  today = mm + '/' + dd + '/' + yy
+  const date = new Date(time);
+  const hours = date.getHours()< 12 ? date.getHours() : date.getHours() - 12 ;
+  const amOrPm = date.getHours() < 12 ? " AM" : " PM";
+  const minutes =  date.getMinutes();
+  const formattedTime = today + ' ' + hours + ':' + minutes + amOrPm;
 
-    return formattedTime;
-  }
+  return formattedTime;
+}
 
 handleChange(e){
   let newMessageContent = e.target.value;
@@ -138,7 +144,9 @@ render(){
              <div>
                <b>{messages.username}   </b>
                <small style={{fontSize: '1.5rem' , color: '#A9A9A9'}}>
-                {this.formatTime(messages.sentAt)}
+               <Moment element="span" format="MM/DD/YY hh:mm A" className="sent-at">
+               	  	  { messages.sentAt }
+               		</Moment>
 
                 </small>
                 <button className="deleteButton" onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>  <ion-icon  name="trash"></ion-icon>
