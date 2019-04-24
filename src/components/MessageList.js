@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, Form } from 'react-bootstrap';
 import './MessageList.css'
 import { Modal } from 'react-bootstrap';
+import Moment from 'react-moment';
 
 
 class MessageList extends Component {
@@ -143,7 +144,9 @@ render(){
              <div>
                <b>{messages.username}   </b>
                <small style={{fontSize: '1.5rem' , color: '#A9A9A9'}}>
-                {this.formatTime(messages.sentAt)}
+               <Moment element="span" format="MM/DD/YY hh:mm A" className="sent-at">
+               	  	  { messages.sentAt }
+               		</Moment>
 
                 </small>
                 <button className="deleteButton" onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>  <ion-icon  name="trash"></ion-icon>

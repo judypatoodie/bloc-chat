@@ -83,10 +83,8 @@ activeRoomColorChange(room) {
 
     return (
       <section className="chatColumn">
-      <h1 className="colTitle">Chitter Box</h1>
-      <Button bsStyle="success" style={{float:'right'}} onClick={() => this.handleShow()}>
-        New Room 
-      </Button>
+      <h1 className="colTitle">Bloc Chat</h1>
+      <Button bsStyle="success" style={{float:'right'}} onClick={() => this.handleShow()}>Add Room </Button>
 
       <Modal show={this.state.show} onHide={() => this.handleClose() }>
         <Modal.Header closeButton>
