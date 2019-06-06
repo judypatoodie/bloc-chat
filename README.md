@@ -13,3 +13,9 @@ Run app locally by following the steps below:<br>
 4. run `npm start` to start your application<br>
 5. Your browser should open up a window with your application running<br>
 
+## Future Enhancements
+
+- Add ability to edit chat messages
+- Add user permission roles to validate actions
+- Add ability to delete chat rooms as an Admin
+- Have default Guest username include a number that increments as each new guest uses the application
