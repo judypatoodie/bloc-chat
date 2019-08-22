@@ -13,21 +13,6 @@ class MessageList extends Component {
       roomID: '',
       content: '',
       deletedMsgId:'',
-      deleteConfirmation:(
-        <div className="static-modal">
-          <Modal.Dialog>
-            <Modal.Header>
-              <Modal.Title>Are you sure?</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>This message deletion cannot be undone.</Modal.Body>
-
-            <Modal.Footer>
-              <Button>Cancel</Button>
-              <Button bsStyle="primary">Delete Msg</Button>
-            </Modal.Footer>
-          </Modal.Dialog>
-          </div> ),
       messages: [
         {
           username: '',
