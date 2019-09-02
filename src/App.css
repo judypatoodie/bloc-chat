@@ -6,6 +6,7 @@
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  display:flex;
 }
 
 .leftCol {
@@ -42,6 +43,25 @@
 
 }
 
+
 body {
   overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+  .App {
+    flex-direction: column;
+    overflow: scroll;
+  }
+  .leftCol,
+  .main {
+    width: auto;
+      overflow: scroll;
+
+  }
+
+  .main{
+    height: 80%;
+    overflow: scroll;
+  }
 }

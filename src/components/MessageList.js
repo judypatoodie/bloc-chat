@@ -104,6 +104,7 @@ render(){
 
  <div className="messageSection">
 
+<div>
   <Form
   inline
   onSubmit={(e) => this.createNewMessage(e)}>
@@ -120,6 +121,7 @@ render(){
    </FormGroup>
 
 
+
    <div>
      <Button
      type="submit"
@@ -128,6 +130,7 @@ render(){
      </Button>
    </div>
    </Form>
+   </div>
 
 
    <div className="messages" style={{marginTop:'3rem'}}>
