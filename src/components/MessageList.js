@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, Form } from 'react-bootstrap';
 import './MessageList.css'
-import { Modal } from 'react-bootstrap';
+import { Modal, ControlLabel } from 'react-bootstrap';
 import Moment from 'react-moment';
 
 
@@ -12,7 +12,9 @@ class MessageList extends Component {
     this.state= {
       roomID: '',
       content: '',
+      deleteMsgShow: false,
       deletedMsgId:'',
+      deleteMsgContent:'',
       messages: [
         {
           username: '',
@@ -63,6 +65,13 @@ handleChange(e){
      this.setState({content: newMessageContent});
 }
 
+handleClose() {
+   this.setState({ deleteMsgShow: false });
+ }
+
+ handleShow() {
+   this.setState({ deleteMsgShow: true });
+ }
 
 createNewMessage(e){
   e.preventDefault();
@@ -83,8 +92,10 @@ deleteMessage(e, messageId){
   this.msgDeleteRef= this.props.firebase.database().ref('messages');
   this.msgDeleteRef.child(messageId).remove();
   this.setState({deletedMsgId: messageId})
-  console.log(messageId);
+  //console.log(messageId);
+  this.setState({ deleteMsgShow: false });
 }
+
 
 render(){
 
@@ -92,7 +103,6 @@ render(){
 
 
  <div className="messageSection">
-
 
   <Form
   inline
@@ -134,8 +144,43 @@ render(){
                		</Moment>
 
                 </small>
-                <button className="deleteButton" onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>  <ion-icon  name="trash"></ion-icon>
+                <button className="deleteButton" onClick={() => this.handleShow()}>  <ion-icon  name="trash"></ion-icon>
                 </button>
+                <Modal
+                  show={this.state.deleteMsgShow}
+                  onHide={() => this.handleClose()}
+                  className="deleteMsgModal"
+                  >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Deleting message <ion-icon  name="warning"></ion-icon></Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Are you sure you would like to delete this message?
+                    <p>This action can't be undone.</p>
+
+
+
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <div>
+                      <Button
+                      className="cancelButton"
+                      bsStyle="danger"
+                      onClick={() => this.handleClose()}>Cancel</Button>
+                    <Button
+                    className="cancelButton"
+                    style={{marginRight:'9px'}}
+                    bsStyle="success"
+                    onClick={(e, messageId)=> this.deleteMessage(e, messages.key)}>
+                    Yes
+                  </Button>
+
+                  </div>
+                  </Modal.Footer>
+
+                 </Modal>
+
+
                 <p>{messages.content}</p>
              </div>
 
