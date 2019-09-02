@@ -91,7 +91,7 @@ render(){
   return(
 
 
- <div>
+ <div className="messageSection">
 
 
   <Form
@@ -99,7 +99,7 @@ render(){
   onSubmit={(e) => this.createNewMessage(e)}>
    <FormGroup
    controlId="formControlsTextarea"
-   style={{bottom: '2rem', width: '70vw', position: 'absolute', marginBottom: '5rem'}}>
+   style={{bottom: '2rem', width: '70%', position: 'absolute', marginBottom: '5rem', paddingRight:'60px'}}>
      <FormControl
      componentClass="textarea"
      onChange={(e) => this.handleChange(e)}

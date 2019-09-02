@@ -1,3 +1,5 @@
+
+
 .submitButton{
   margin-top: 9px;
 }
@@ -9,3 +11,13 @@
 .renameRoomButton{
   float: right;
 }
+
+.roomName:hover{
+  font-weight: bold;
+}
+
+.chatColumn .colTitle{
+    overflow: hidden;
+}
+
+.title {  overflow: hidden;}

@@ -3,9 +3,9 @@
 .App {
   display: grid;
   grid-template-columns: 30vw auto ;
-   height: 100vh;
-
-
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .leftCol {
@@ -14,19 +14,21 @@
   background-size: cover;
   text-align: left;
   padding-left: 30px;
+    overflow: hidden;
 }
 
 .roomNames {
   padding-top: 20px;
   font-size: 20px;
     color: #fff;
+      overflow: hidden;
 }
 
 .colTitle{
   font-size: 40px;
     color: #fff;
     display: inline-block;
-
+      overflow: hidden;
 }
 
 .btn{
@@ -36,4 +38,9 @@
   background-color: #fff;
   font-size: 30px;
   padding-left: 30px;
+    overflow: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }

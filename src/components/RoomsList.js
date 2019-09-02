@@ -83,30 +83,32 @@ activeRoomColorChange(room) {
 
     return (
       <section className="chatColumn">
-      <h1 className="colTitle">Chitter Box</h1>
-      <Button bsStyle="success" style={{float:'right'}} onClick={() => this.handleShow()}>Add Room </Button>
+        <div className="title">
+          <div className="title"><h1 className="colTitle" style={{float:'left', margin: '0'}}>Chitter Box</h1></div>
+          <Button bsStyle="success" style={{float:'left', marginTop:'5px', marginLeft: '0'}} onClick={() => this.handleShow()}>Add Room </Button>
 
-      <Modal show={this.state.show} onHide={() => this.handleClose() }>
-        <Modal.Header closeButton>
-          <Modal.Title>Create New Room</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {this.state.overlay}
-        </Modal.Body>
-        <Modal.Footer>
-              <Button
-              className="cancelButton"
-              bsStyle="danger"
-              onClick={() => this.handleClose()}>Cancel</Button>
-        </Modal.Footer>
+          <Modal show={this.state.show} onHide={() => this.handleClose() }>
+            <Modal.Header closeButton>
+              <Modal.Title>Create New Room</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {this.state.overlay}
+            </Modal.Body>
+            <Modal.Footer>
+                  <Button
+                  className="cancelButton"
+                  bsStyle="danger"
+                  onClick={() => this.handleClose()}>Cancel</Button>
+            </Modal.Footer>
 
-       </Modal>
-
-          <div className="roomsList" style={{marginTop: '2.5rem'}} >
+           </Modal>
+         </div>
+          <div className="roomsList" style={{marginTop: '0'}} >
             {
               this.state.rooms
               .map((room,index)  =>
             <p
+            className="roomName"
             key={index}
             data-value={room.name}
             data-key={room.key}
