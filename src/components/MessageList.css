@@ -7,10 +7,10 @@
 .message-group:hover .deleteButton {
   visibility:visible;
   color: #008B8B;
-
 }
 
 .message-group:hover{
+    margin-right:40px;;
     background-color: #f1f1f1;
 }
 
@@ -29,4 +29,8 @@ button{
     border: 1px solid #696969;
     border-radius: 10px;
 
+}
+
+#formControlsTextarea{
+  width: 100%;
 }

@@ -104,20 +104,20 @@ render(){
 
  <div className="messageSection">
 
-<div>
+<div >
   <Form
   inline
   onSubmit={(e) => this.createNewMessage(e)}>
    <FormGroup
    controlId="formControlsTextarea"
-   style={{bottom: '2rem', width: '70%', position: 'absolute', marginBottom: '5rem', paddingRight:'60px'}}>
+   style={{bottom: '2rem', width: '70%',position: 'absolute', marginBottom: '5rem'}}>
      <FormControl
      componentClass="textarea"
      onChange={(e) => this.handleChange(e)}
      type="text"
      value={this.state.content}
      placeholder="Type Message Here.."
-     style={{width: '100%'}} />
+      />
    </FormGroup>
 
 

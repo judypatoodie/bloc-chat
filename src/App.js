@@ -68,7 +68,7 @@ setUser(user){
 
           </div>
           <div className="main" style={{marginTop:'2.5rem'}} >
-           <div style={{ borderBottom: '1px solid #D3D3D3', paddingBottom: '2rem'}}>
+           <div style={{ borderBottom: '1px solid #D3D3D3', paddingBottom: '2rem', marginRight: '40px'}}>
             <ion-icon name="paper-plane"></ion-icon> {this.state.activeRoom}
            </div>
 
